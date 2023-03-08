@@ -1,13 +1,16 @@
 package jm.task.core.jdbc;
 
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
+//import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
+        userService.dropUsersTable();
         userService.createUsersTable();
         userService.saveUser("francisk", "klio", (byte) 33);
         userService.saveUser("gradno", "where", (byte) 24);
@@ -20,6 +23,7 @@ public class Main {
         System.out.println(user1);
         User user2 = userService.getAllUsers().get(2);
         System.out.println(user2);
-
+        List<User> userList = userService.getAllUsers();
+        System.out.println(userList);
     }
 }
